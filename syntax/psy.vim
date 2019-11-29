@@ -14,7 +14,7 @@ endif
 exe 'runtime! syntax/c.vim'
 unlet! b:current_syntax
 
-syn keyword psycStatement sourcedata sourcecommand advance endbody next consult jump count push pop clearlasttimestamp lastsender countpushers clockperiod clockoffset taskid presenttime converttick popperstatus displayerstatus starttime
+syn keyword psycStatement sourcedata sourcecommand advance endbody next consult jump count push pop clear lasttimestamp lastsender countpushers clockperiod clockoffset taskid presenttime converttick popperstatus displayerstatus starttime
 syn keyword psycKeyword with global display delayed latest waitfor releasein within timebudget popfrom pushto expiration init defaultclock uses starton onclock jitter
 syn keyword psycControl body agent worker job output input internal init khibody
 syn keyword psycTypeQualifier fractional temporal stream

@@ -1,0 +1,100 @@
+*asterios.txt*	ViM/Neovim integration for the ASTERIOS tool suite
+                                                                               ~
+                                   //////////////////(                       ~
+                              *///////////////////////////                   ~
+                           *///*******/%#&&&&&&&&%/*/////////.               ~
+                         ********/####%%%%%%%%&&&&&&&&&////////(             ~
+                        *******########%%%%%%%%%&&&&&&&&&%///////            ~
+                      *//****###########%%%%%%%%%%&&&&&&&&&%//////.          ~
+                     */////*############%%%%%%%%%%%%&&&&&&&&&,,,,,*.         ~
+                     /////*(############%%%%%%%%%%%%%&&&&&&&&&,,,,,,         ~
+                    */////*(####%&@@@@@@@@@@&&@@%%%%%%&&&&&&&&,,,,,,/        ~
+              *%&&@@@@@@@@@%(*.................*@%#%%%&&&&&&&&(*****%        ~
+    &&&&&&(,,..................................@@#%%%%%&&&&&&&******&        ~
+    &&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@...../@@#%%%%%%&&&&&&&***/**&        ~
+                     .,,,,..**######(@@.....@@#%%%%%%%&&&&&&&**////&         ~
+                      ,,,,,..***###(@@....(@@#%%%%%%&&&&&&&(*/////&,         ~
+                        *,,,,,,***#@@....@@%%%%%%%&&&&&&&(**/////&           ~
+                         ,*,,,,,,,@@...(@@##%%%&&&&&&&#**//////&,            ~
+                            /,,*,&&...@@#%%%%&&&%/****////(/(&               ~
+                               /%&..(@&**********////////(&                  ~
+                               &&..&&**/////////////(%(                      ~
+                              &&//&&%%*                                      ~
+                               (%%%%%                                        ~
+                                                                             ~
+            #     #####  ####### ####### ######  ### #######  #####  ~
+           # #   #     #    #    #       #     #  #  #     # #     # ~
+          #   #  #          #    #       #     #  #  #     # #       ~
+         #     #  #####     #    #####   ######   #  #     #  #####  ~
+         #######       #    #    #       #   #    #  #     #       # ~
+         #     # #     #    #    #       #    #   #  #     # #     # ~
+         #     #  #####     #    ####### #     # ### #######  #####  ~
+
+==============================================================================
+Overview                                                        *vim-asterios*
+
+vim-asterios provides support for the languages used when developing an
+ASTERIOS application:
+
+  * the PsyC (support of the `.psy` files);
+  * the KhiC (support of the `.khic` files);
+  * the Bgt (support of the `.bgt` files);
+  * the tak (support of the `.tak` files).
+
+It also features an integration with ALE to provide linting of PsyC source
+files, for ASTERIOS Developer K19.2 and above only: see |vim-asterios-lint|.
+
+==============================================================================
+ALE Psy Integration                                        *vim-asterios-lint*
+                                                             *ale-psy-options*
+
+ALE (Asynchronous Lint Engine) can lint PsyC source files using `psyko`. You
+need the ALE plugin obviously, and you also need to redefine the following
+variables:
+
+  * |g:ale_psy_psyko_executable|
+  * |g:ale_psy_psyko_product|
+  * |g:ale_psy_psyko_kernel_dir|
+
+------------------------------------------------------------------------------
+
+g:ale_psy_psyko_executable                        *g:ale_psy_psyko_executable*
+                                                  *b:ale_psy_psyko_executable*
+
+  Type: |String|
+  Default: `psyko`
+
+  Complete path to `psyko` executable, version must be 8.10.2 or above.
+
+
+g:ale_psy_psyko_product                              *g:ale_psy_psyko_product*
+                                                     *b:ale_psy_psyko_product*
+
+  Type: |String|
+  Default: `ksim`
+
+  Value of the `--product` option used when invoking `psyko`.
+
+
+g:ale_psy_psyko_kernel_dir                        *g:ale_psy_psyko_kernel_dir*
+                                                  *b:ale_psy_psyko_kernel_dir*
+
+  Type: |String|
+  Default: `''`
+
+  Value of the `--kernel-dir` option used when invoking `psyko`.
+
+  Note: The default value is invalid, thus the integration cannot work unless
+  you override this variable.
+
+
+g:ale_psy_psyko_options                              *g:ale_psy_psyko_options*
+                                                     *b:ale_psy_psyko_options*
+
+  Type: |String|
+  Default: `--color no`
+
+  Option flags used when invoking `psyko`.
+
+==============================================================================
+  vim:tw=78:ts=8:noet:ft=help

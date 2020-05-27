@@ -1,0 +1,8 @@
+{
+  "psymodule":{
+    "psy_pp_flags": [
+      "-D",
+      "CPP_SYMBOL_IN_JSON"
+    ]
+  }
+}

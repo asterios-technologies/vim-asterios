@@ -5,7 +5,7 @@
 " See:          http://www.krono-safe.com/asterios-developer/
 " Version:      This is compatible with Asterios Developer K18
 
-if exists("b:current_syntax")
+if exists('b:current_syntax')
   finish
 endif
 
@@ -37,4 +37,4 @@ hi def link takTag        Type
 hi def link takDirective  Special
 hi def link takIdentifier Identifier
 
-let b:current_syntax = "tak"
+let b:current_syntax = 'tak'

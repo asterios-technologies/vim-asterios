@@ -33,4 +33,4 @@ hi def link psycConstant        Constant
 hi def link psycKeyword         Statement
 hi def link psycControl         Repeat
 
-let b:current_syntax = "psy"
+let b:current_syntax = 'psy'

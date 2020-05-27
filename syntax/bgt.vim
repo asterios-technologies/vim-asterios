@@ -5,9 +5,9 @@
 " See:          http://www.krono-safe.com/asterios-developer/
 " Version:      This is compatible with Asterios Developer K18, K19
 
-if version < 600
+if v:version < 600
   syntax clear
-elseif exists("b:current_syntax")
+elseif exists('b:current_syntax')
   finish
 endif
 
@@ -19,4 +19,4 @@ hi def link     bgtComment             Comment
 hi def link     bgtKw                  Type
 hi def link     bgtNumber              Number
 
-let b:current_syntax = "bgt"
+let b:current_syntax = 'bgt'

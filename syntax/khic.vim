@@ -24,4 +24,4 @@ hi def link khicCInclude        Include
 hi def link khicStatement	Statement
 hi def link khicType		Type
 
-let b:current_syntax = "khic"
+let b:current_syntax = 'khic'

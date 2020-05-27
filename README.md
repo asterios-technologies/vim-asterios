@@ -1,5 +1,7 @@
 # vim-asterios
 
+![reviewdog](https://github.com/krono-safe/vim-asterios/workflows/reviewdog/badge.svg)
+
 This repository contains [ViM][1] and [NeoViM][2] support for the following
 languages used when developing an [Asterios Application][3]:
 

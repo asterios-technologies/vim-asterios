@@ -1,0 +1,14 @@
+{
+  "psymodule": {
+    "cflags": [
+      "-g2"
+    ],
+    "errors": [
+      "error1"
+    ],
+    "psy_pp_flags": [
+      "-D",
+      "CPP_SYMBOL_IN_JSON"
+    ]
+  }
+}

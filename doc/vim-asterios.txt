@@ -1,0 +1,226 @@
+*vim-asterios.txt*
+
+Vim/Neovim integration for the ASTERIOS tool suite              *vim-asterios*
+                                                                    *asterios*
+
+
+                                   //////////////////(                       ~
+                              *///////////////////////////                   ~
+                           *///*******/%#&&&&&&&&%/*/////////.               ~
+                         ********/####%%%%%%%%&&&&&&&&&////////(             ~
+                        *******########%%%%%%%%%&&&&&&&&&%///////            ~
+                      *//****###########%%%%%%%%%%&&&&&&&&&%//////.          ~
+                     */////*############%%%%%%%%%%%%&&&&&&&&&,,,,,*.         ~
+                     /////*(############%%%%%%%%%%%%%&&&&&&&&&,,,,,,         ~
+                    */////*(####%&@@@@@@@@@@&&@@%%%%%%&&&&&&&&,,,,,,/        ~
+              *%&&@@@@@@@@@%(*.................*@%#%%%&&&&&&&&(*****%        ~
+    &&&&&&(,,..................................@@#%%%%%&&&&&&&******&        ~
+    &&&&&&&&&&&&&&&&&&&@@@@@@@@@@@@@@@@@...../@@#%%%%%%&&&&&&&***/**&        ~
+                     .,,,,..**######(@@.....@@#%%%%%%%&&&&&&&**////&         ~
+                      ,,,,,..***###(@@....(@@#%%%%%%&&&&&&&(*/////&,         ~
+                        *,,,,,,***#@@....@@%%%%%%%&&&&&&&(**/////&           ~
+                         ,*,,,,,,,@@...(@@##%%%&&&&&&&#**//////&,            ~
+                            /,,*,&&...@@#%%%%&&&%/****////(/(&               ~
+                               /%&..(@&**********////////(&                  ~
+                               &&..&&**/////////////(%(                      ~
+                              &&//&&%%*                                      ~
+                               (%%%%%                                        ~
+                                                                             ~
+            #     #####  ####### ####### ######  ### #######  #####  ~
+           # #   #     #    #    #       #     #  #  #     # #     # ~
+          #   #  #          #    #       #     #  #  #     # #       ~
+         #     #  #####     #    #####   ######   #  #     #  #####  ~
+         #######       #    #    #       #   #    #  #     #       # ~
+         #     # #     #    #    #       #    #   #  #     # #     # ~
+         #     #  #####     #    ####### #     # ### #######  #####  ~
+
+==============================================================================
+CONTENTS                                               *vim-asterios-contents*
+
+  1. Overview..........................................|vim-asterios-overview|
+  2. PsyC Linting.....................................|vim-asterios-psyc-lint|
+  3. JSON Completion..................................|vim-asterios-json-comp|
+  4. Configuration.......................................|vim-asterios-config|
+  5. Commands..........................................|vim-asterios-commands|
+  6. Acknowledgments...........................|vim-asterios-acknowledgements|
+
+==============================================================================
+OVERVIEW                                               *vim-asterios-overview*
+
+
+vim-asterios provides support for the languages used when developing an
+ASTERIOS application. It includes out of the box syntax highlighting for:
+
+  * the PsyC (support of the `.psy` files)
+  * the Bgt (support of the `.bgt` files)
+  * the KhiC (support of the `.khic` files) - deprecated
+  * the tak (support of the `.tak` files)   - deprecated
+
+For ASTERIOS K19.2 and higher, vim-asterios also features an integration with
+`ALE` (Asynchronous Lint Engine) to provide linting of PsyC source files, and
+an integration with `coc.nvim` for linting and autocompletion of JSON
+configuration files.
+
+
+------------------------------------------------------------------------------
+PSYC LINTING                                          *vim-asterios-psyc-lint*
+
+
+To setup PsyC linting, you need to install the ALE plugin
+(https://github.com/dense-analysis/ale), and define |g:ast_psyko_path|,
+|g:ast_product_name| and |g:ast_kernel_dir|. ALE should recognize `.psy`
+source files and call `psyko` to do the linting. Run |:ALEInfo| for
+troubleshooting.
+
+The command line used to do the linting is the following:
+
+  psyko {g:ale_psy_psyko_options}       \
+        --product {g:ast_product_name}  \
+        --kernel-dir {g:ast_kernel_dir} \
+        module --gendb                  \
+        --output <tempfile>             \
+        -- <your_psyc_source_file>
+
+You can disable ALE integration by setting |g:ast_ale_enabled| to 0.
+
+Note that only PsyC language is linted: inconsistencies of the C code won't be
+detected.
+
+See also: |g:ale_psy_psyko_options|, |g:ale_psy_psyko_jsonconf|
+
+
+------------------------------------------------------------------------------
+JSON COMPLETION                                       *vim-asterios-json-comp*
+
+
+JSON configuration files for PsyC application can be tedious to edit by hand.
+vim-asterios can provide "smart" autocompletion for configuration files,
+using `coc.nvim` and its JSON language server extension (which is really a fork
+of Visual Studio Code JSON Language Server).
+
+To enable it, you first need to install `coc.nvim`
+(https://github.com/neoclide/coc-json), then the JSON language server with:
+>
+  :CocInstall coc-json
+<
+Then, open any JSON file, and run |:AsteriosConfig| to automatically configure
+`coc.nvim` for this file. Autocompletion and linting are enabled: start typing
+and see for yourself.
+
+Note: by default, JSON files named `<model>.json` or `*.<model>.json` are
+recognized as ASTERIOS configuration files and autocompletion is enabled (as
+if you called |:AsteriosConfig| upon opening the file). `<model>` can be any
+of the following:
+>
+  app, error_handlers, external_source, ktools, link_options,
+  partition, psymodule
+<
+You can disable `coc.nvim` integration altogether by setting |g:ast_coc_enabled|
+to 0.
+
+
+==============================================================================
+CONFIGURATION                                            *vim-asterios-config*
+
+g:ast_psyko_path                                            *g:ast_psyko_path*
+
+  Type: |String|
+  Default: 'psyko'
+
+  Path to the `psyko` compiler.
+
+
+g:ast_product_name                                        *g:ast_product_name*
+
+  Type: |String|
+  Default: 'ksim'
+
+  Name of the RTK product to be used for linting and completion.
+
+
+g:ast_kernel_dir                                            *g:ast_kernel_dir*
+
+  Type: |String|
+  Default: ''
+
+  Path to the root RTK installation directory.
+  Note: The default value is invalid, as it is an empty string.
+
+
+g:ast_coc_enabled                                          *g:ast_coc_enabled*
+
+  Type: |Boolean|
+  Default: |v:true|
+
+  Set this variable to 0 to disable integration with the coc.nvim plugin (used
+  for JSON configuration files linting and omnicompletion).
+
+
+g:ast_ale_enabled                                          *g:ast_ale_enabled*
+
+  Type: |Boolean|
+  Default: |v:true|
+
+  Set this variable to 0 to disable integration with the ALE plugin (used for
+  linting PsyC source files).
+
+
+------------------------------------------------------------------------------
+The following options are used to configure ALE. If |g:ast_ale_enabled| is
+FALSE, they have no effect. See |vim-asterios-psyc-linting| for an overview of
+this feature.
+
+
+g:ale_psy_psyko_options                              *g:ale_psy_psyko_options*
+                                                     *b:ale_psy_psyko_options*
+
+  Type: |String|
+  Default: `'--color no'`
+
+  Set of global options passed to `psyko` when calling it for linting. The
+  command line used for linting is of the form:
+
+
+g:ale_psy_psyko_jsonconf                            *g:ale_psy_psyko_jsonconf*
+                                                    *b:ale_psy_psyko_jsonconf*
+
+  Type: |List| or |String|
+  Default: []
+
+  Additional JSON/Hjson configuration files that `psyko` must use for linting.
+  These files are added to the `psyko module` command line: make sure to use
+  configuration models accepted for the `module` command in your JSON files.
+
+
+==============================================================================
+COMMANDS                                               *vim-asterios-commands*
+
+:AsteriosConfig
+
+  Register the current file as an ASTERIOS JSON configuration file, and
+  configure coc.nvim to enable linting and autocompletion.
+
+
+:AsteriosDiag                                                  *:AsteriosDiag*
+
+  Print a diagnostics message of the status of the ASTERIOS plug-in.
+
+
+==============================================================================
+ACKNOWLEDGMENTS                                *vim-asterios-acknowledgements*
+
+All Vim and Neovim lovers at Krono-Safe would like to thank the maintainers
+and contributors of the following projects - because life would just be less
+fun without the tools you've built. ❤️
+
+* Vim                   https://www.vim.org/
+* Neovim                https://neovim.io/
+* ALE (plugin)          https://github.com/dense-analysis/ale
+* coc.nvim (plugin)     https://github.com/neoclide/coc.nvim
+* VSCode JSON Language Server
+              https://github.com/vscode-langservers/vscode-json-languageserver
+
+Thank you for your fantastic work.
+
+------------------------------------------------------------------------------
+vim:tw=78:ts=8:ft=help:norl:

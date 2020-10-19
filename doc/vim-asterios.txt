@@ -51,7 +51,8 @@ OVERVIEW                                               *vim-asterios-overview*
 vim-asterios provides support for the languages used when developing an
 ASTERIOS application. It includes out of the box syntax highlighting for:
 
-  * the PsyC (support of the `.psy` files)
+  * the PsyC (support of the `.psy` files, provided with SnipMate compatible
+    snippets)
   * the Bgt (support of the `.bgt` files)
   * the KhiC (support of the `.khic` files) - deprecated
   * the tak (support of the `.tak` files)   - deprecated

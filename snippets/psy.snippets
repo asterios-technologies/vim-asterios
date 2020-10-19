@@ -1,0 +1,106 @@
+################################################################################
+# TASKS
+################################################################################
+
+snippet agent
+	agent ${1:agentname} (uses ${2:sourcename}, defaultclock ${3:clockname}, starttime ${4:starttimeval})
+	{
+		global { }
+
+		body start
+		{
+			${5}
+		}
+	}
+
+snippet worker
+	worker ${1:workername} (uses ${2:sourcename})
+	{
+		init { }
+		global { }
+
+		input
+		{
+			${3}
+		}
+
+		output
+		{
+
+		{
+
+		internal
+		{
+
+		}
+	}
+
+snippet job
+	job ${1:jobname} (onclock ${2:clockname}, starttime ${3:starttimeval}, jitter ${4:jitterval})
+	{
+		khibody (timebudget ${5:timebudgetid})
+		{
+			${6}
+		}
+	}
+
+
+################################################################################
+# TEMPORAL VARIABLES
+################################################################################
+
+snippet temporal
+	temporal ${1:type} ${2:identifier} = ${3:initval} starttime ${4:starttimeval} with ${5:clockname};
+
+snippet display
+	display
+	{
+		${1:tvname}: ${2:receiverslist};
+	}
+
+snippet consult
+	consult
+	{
+		${1:historydepth} $ ${2:tvname};
+	}
+
+snippet displayerstatus
+	displayerstatus(${1:tvname}, ${2:sampleindex})
+
+
+################################################################################
+# STREAMS
+################################################################################
+
+snippet stream
+	stream ${1:type} ${2:identifier}, expiration ${3:expiration};
+
+snippet push
+	push(${1:streamname}, ${2:msgaddress});
+
+snippet pop
+	pop(${1:streamname}, ${2:taskid})
+
+snippet clear
+	clear(${1:streamname}, ${2:taskid})
+
+snippet pushto
+	pushto
+	{
+		${1:streamname} expiration ${2:duration};
+	}
+
+snippet popfrom
+	popfrom
+	{
+		${1:streamname}: ${2:senderslist};
+	}
+
+
+################################################################################
+# OTHERS
+################################################################################
+
+snippet converttick
+	converttick(${1:clockname}, ${2:psycexpr})
+

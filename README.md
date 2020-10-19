@@ -5,7 +5,8 @@
 This repository contains [ViM][1] and [NeoViM][2] support for the following
 languages used when developing an [ASTERIOS Application][3]:
 
-* the PsyC (support of the `.psy` files);
+* the PsyC (support of the `.psy` files, provided with [SnipMate][7] compatible
+  snippets);
 * the KhiC (support of the `.khic` files);
 * the Bgt (support of the `.bgt` files);
 * the tak (support of the `.tak` files).
@@ -87,3 +88,4 @@ This repository is under the [Apache-V2 license](LICENSE).
 [4]: https://github.com/junegunn/vim-plug
 [5]: https://github.com/dense-analysis/ale
 [6]: https://github.com/neoclide/coc.nvim
+[7]: https://github.com/garbas/vim-snipmate

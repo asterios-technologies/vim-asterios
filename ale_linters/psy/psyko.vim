@@ -105,7 +105,7 @@ call ale#linter#Define('psy', {
 \   'name': 'psyko',
 \   'output_stream': 'stderr',
 \   'lint_file': 1,
-\   'executable': g:ast_psyko_path,
+\   'executable': { -> g:ast_psyko_path},
 \   'command': function('s:GetCommand'),
 \   'callback': function('s:HandleOutput'),
 \})

@@ -14,12 +14,12 @@ endif
 exe 'runtime! syntax/c.vim'
 unlet! b:current_syntax
 
-syn keyword psycStatement sourcedata sourcecommand advance endbody next consult jump count push pop clear lasttimestamp lastsender countpushers clockperiod clockoffset taskid presenttime converttick popperstatus displayerstatus starttime
-syn keyword psycKeyword with global display delayed latest waitfor releasein within timebudget popfrom pushto expiration init defaultclock uses starton onclock jitter
-syn keyword psycControl body agent worker job output input internal init khibody
+syn keyword psycStatement sourcedata sourcecommand advance endbody next consult jump count push pop clear lasttimestamp lastsender countpushers clockperiod clockoffset taskid presenttime converttick popperstatus displayerstatus starttime partitionid cpuid
+syn keyword psycKeyword with global display delayed latest waitfor releasein within timebudget popfrom pushto expiration init defaultclock uses starton onclock jitter idle period offset
+syn keyword psycControl body agent worker job output input internal init khibody timeline partition timeslot
 syn keyword psycTypeQualifier fractional temporal stream
 syn keyword psycType source clock duration t_ast_clock_tick t_ast_source_time t_ast_task_id
-syn keyword psycConstant all AST_TASK_STOPPED AST_TASK_RUNNING AST_CLOCK_TICK_NEGATIVE AST_SOURCE_TIME_NEGATIVE
+syn keyword psycConstant all AST_TASK_STOPPED AST_TASK_RUNNING AST_CLOCK_TICK_NEGATIVE AST_SOURCE_TIME_NEGATIVE AST_STATUS_RUNNING AST_STATUS_STOPPED AST_STATUS_UNAVAILABLE
 
 " Psy provides the $$#include syntax to include C sources from the Psy
 syn match psycCInclude display "^\s*\$\$#include\>\s*["<]" contains=cIncluded

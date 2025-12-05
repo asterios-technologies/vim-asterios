@@ -8,6 +8,7 @@ au BufRead,BufNewFile *.tak      set filetype=tak
 au BufRead,BufNewFile *.bgt      set filetype=bgt
 au BufRead,BufNewFile *.psy      set filetype=psy
 au BufRead,BufNewFile *.psyh     set filetype=psy
+au BufRead,BufNewFile *.psyt     set filetype=psy
 au BufRead,BufNewFile *.khic     set filetype=khic
 
 " JSON configuration files: autocmd only defined when *reading* a file: we can't
